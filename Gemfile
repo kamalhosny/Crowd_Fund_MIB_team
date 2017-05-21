@@ -31,6 +31,15 @@ gem "paperclip", "~> 5.0.0"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+# Use Devise Token Auth for authentication and its dependencies
+gem 'devise_token_auth', '~> 0.1.42'
+gem 'devise', '~> 4.3'
+gem 'omniauth', '~> 1.6'
+# gem 'omniauth-github'
+# gem 'omniauth-facebook'
+# gem 'omniauth-google-oauth2'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

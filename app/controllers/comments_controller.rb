@@ -1,15 +1,15 @@
 class CommentsController < ApplicationController
   def index
-    comments=Comment.all
+    comments=current_user.comments
     respond_to do |format|
       format.json {render :json =>comments}
     end
   end
 
   def create
-    comment=Comment.new comment_params
+    comment=current_user.comments.create comment_params
     respond_to do |format|
-      if comment.save!
+      if comment.errors.empty?
           format.json {render :json =>comment}
       else
         format.json {render comment.errors.full_messages.to_json, status: 400 }
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:content,:user_id)
+    params.require(:comment).permit(:content)
   end
 
 end

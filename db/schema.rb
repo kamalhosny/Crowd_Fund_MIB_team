@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520184919) do
+ActiveRecord::Schema.define(version: 20170521083945) do
 
   create_table "campaigns", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
+    t.string   "title",                                          null: false
+    t.text     "description",                                    null: false
     t.integer  "achieved"
-    t.integer  "goal"
+    t.integer  "goal",                                           null: false
     t.string   "video"
-    t.boolean  "status"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "status",                         default: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "cover_photo_file_name"
     t.string   "cover_photo_content_type"
     t.integer  "cover_photo_file_size"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170520184919) do
     t.string   "description_photo_content_type"
     t.integer  "description_photo_file_size"
     t.datetime "description_photo_updated_at"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
 end

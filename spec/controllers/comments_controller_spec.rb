@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  before(:each) do
+  before do
     @user = create(:user)
     @campaign = create(:campaign)
     sign_in(@user)

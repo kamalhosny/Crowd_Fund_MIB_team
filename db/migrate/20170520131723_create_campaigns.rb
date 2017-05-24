@@ -3,7 +3,7 @@ class CreateCampaigns < ActiveRecord::Migration[5.0]
     create_table :campaigns do |t|
       t.string :title
       t.text :description
-      t.integer :achieved
+      t.integer :achieved ,default: 0
       t.integer :goal
       t.string :video
       t.boolean :status

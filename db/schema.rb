@@ -36,12 +36,12 @@ ActiveRecord::Schema.define(version: 20170522141430) do
   create_table "campaigns", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "achieved"
+    t.integer  "achieved",                       default: 0
     t.integer  "goal"
     t.string   "video"
     t.boolean  "status"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "cover_photo_file_name"
     t.string   "cover_photo_content_type"
     t.integer  "cover_photo_file_size"

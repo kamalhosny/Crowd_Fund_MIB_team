@@ -48,3 +48,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Use Devise Token Auth for authentication and its dependencies
+gem 'devise_token_auth', '~> 0.1.42'

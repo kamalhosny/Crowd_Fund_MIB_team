@@ -5,10 +5,10 @@ RSpec.describe CommentsController, type: :controller do
     @user = create(:user)
     @campaign = create(:campaign)
     sign_in(@user)
-    request.headers.merge! @user.create_new_auth_token
   end
+  request.headers.merge! @user.create_new_auth_token
+  
   context 'listing' do
-
     it "should return all comments in the database" do
       comment1, comment2 = create(:comment, user_id: @user.id, campaign_id: @campaign.id), create(:comment, user_id: @user.id, campaign_id: @campaign.id)
       get :index, format: :json

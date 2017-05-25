@@ -2,13 +2,13 @@ class CommentsController < ApplicationController
   def index
     comments=current_user.comments
     respond_to do |format|
-      format.json {render :json =>comments}
+      format.json {render json: comments}
     end
   end
 
   def create
 
-    comment=current_user.comments.create comment_params
+    comment = current_user.comments.create comment_params
 
     respond_to do |format|
       if comment.errors.empty?
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment=Comment.find params[:id]
+    comment = Comment.find params[:id]
     respond_to do |format|
       if comment.update comment_params
           format.json {render :json =>comment}
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment=Comment.find params[:id]
+    comment = Comment.find params[:id]
     respond_to do |format|
       if comment.delete
         format.json {render json: {message: "comment: '#{params[:id]}' deleted"}, status: 200}

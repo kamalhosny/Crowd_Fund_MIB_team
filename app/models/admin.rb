@@ -3,6 +3,5 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable,
           :validatable, :omniauthable
   include DeviseTokenAuth::Concerns::User
-
   # include DeviseTokenAuth::Concerns::Admin
 end

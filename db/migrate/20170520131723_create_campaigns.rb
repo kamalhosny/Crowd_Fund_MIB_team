@@ -1,12 +1,12 @@
 class CreateCampaigns < ActiveRecord::Migration[5.0]
   def change
     create_table :campaigns do |t|
-      t.string :title
-      t.text :description
-      t.integer :achieved ,default: 0
-      t.integer :goal
+      t.string :title, null: false
+      t.text :description, null: false
+      t.integer :achieved
+      t.integer :goal, null: false
       t.string :video
-      t.boolean :status
+      t.boolean :status, default: false
       t.timestamps
     end
   end

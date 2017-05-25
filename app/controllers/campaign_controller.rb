@@ -1,5 +1,4 @@
 class CampaignController < ApplicationController
-
   def index
     campaigns = Campaign.all
     respond_to do |format|

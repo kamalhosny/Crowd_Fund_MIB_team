@@ -29,7 +29,7 @@ class CampaignController < ApplicationController
       if campaign.update! campaign_params
         format.json {render :json => campaign}
       else
-        format.json {render campaign.errors.full_messages.to_json, status: 400}  
+        format.json {render campaign.errors.full_messages.to_json, status: 400}
       end
     end
   end

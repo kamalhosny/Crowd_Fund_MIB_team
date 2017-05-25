@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def index
-    comments=current_user.comments
+    comments = current_user.comments
     respond_to do |format|
       format.json {render json: comments}
     end

@@ -35,9 +35,9 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[5.0]
 
       ## User Info
       # t.string :name
-      # t.string :nickname
-      # t.string :image
-      # t.string :email
+      # # t.string :nickname
+      # # t.string :image
+      t.string :email
 
       ## Tokens
       t.text :tokens
@@ -48,7 +48,7 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[5.0]
     add_index :admins, :email,                unique: true
     add_index :admins, [:uid, :provider],     unique: true
     add_index :admins, :reset_password_token, unique: true
-    add_index :admins, :confirmation_token,   unique: true
+    # add_index :admins, :confirmation_token,   unique: true
     # add_index :admins, :unlock_token,       unique: true
   end
 end

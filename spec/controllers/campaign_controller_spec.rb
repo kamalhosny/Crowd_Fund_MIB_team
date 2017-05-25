@@ -8,3 +8,4 @@ RSpec.describe CampaignController, type: :controller do
   end
 
 end
+

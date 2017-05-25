@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20170522141430) do
+
   create_table "admins", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                    default: "",      null: false
@@ -31,16 +32,16 @@ ActiveRecord::Schema.define(version: 20170522141430) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
-  
+
   create_table "campaigns", force: :cascade do |t|
-    t.string   "title",                                          null: false
-    t.text     "description",                                    null: false
-    t.integer  "achieved",                       default: 0    
-    t.integer  "goal",                                           null: false
+    t.string   "title"
+    t.text     "description"
+    t.integer  "achieved",                       default: 0
+    t.integer  "goal"
     t.string   "video"
-    t.boolean  "status",                         default: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.boolean  "status"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "cover_photo_file_name"
     t.string   "cover_photo_content_type"
     t.integer  "cover_photo_file_size"

@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
-  
+
   create_table "campaigns", force: :cascade do |t|
     t.string   "title",                                          null: false
     t.text     "description",                                    null: false
-    t.integer  "achieved",                       default: 0    
+    t.integer  "achieved",                       default: 0
     t.integer  "goal",                                           null: false
     t.string   "video"
     t.boolean  "status",                         default: false
@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 20170529083941) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content",    default: "", null: false
+    t.text     "content",     default: "", null: false
+    t.string   "username"
     t.integer  "user_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false

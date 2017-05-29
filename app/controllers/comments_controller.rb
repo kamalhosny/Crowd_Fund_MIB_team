@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
   skip_before_action :authenticate_member!, only: [:index]
   def index
-    comments = current_user.comments
+    comments = Comment.where campaign_id: params[:campaign_id]
     respond_to do |format|
       format.json {render json: comments}
     end
   end
 
   def create
-
-    comment = current_user.comments.create comment_params
-
+    comment = current_user.comments.create comment_params.merge({username: current_user.username})
     respond_to do |format|
       if comment.errors.empty?
           format.json {render :json =>comment}

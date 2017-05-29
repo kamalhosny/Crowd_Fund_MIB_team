@@ -1,4 +1,5 @@
 class CampaignController < ApplicationController
+  skip_before_action :authenticate_member!, only: [:index, :show]
   def index
     campaigns = Campaign.all
     respond_to do |format|

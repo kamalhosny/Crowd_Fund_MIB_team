@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_action :authenticate_member!, only: [:index]
   def index
     comments = Comment.where campaign_id: params[:campaign_id]
     respond_to do |format|

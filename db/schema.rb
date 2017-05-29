@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523130023) do
+ActiveRecord::Schema.define(version: 20170529083941) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    default: "", null: false
@@ -37,10 +37,6 @@ ActiveRecord::Schema.define(version: 20170523130023) do
     t.integer  "age",                                            null: false
     t.boolean  "gender",                       default: true,    null: false
     t.text     "bio"
-    t.string   "profile_picture_file_name"
-    t.string   "profile_picture_content_type"
-    t.integer  "profile_picture_file_size"
-    t.datetime "profile_picture_updated_at"
     t.string   "facebook"
     t.string   "github"
     t.string   "linked_in"
@@ -52,6 +48,10 @@ ActiveRecord::Schema.define(version: 20170523130023) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

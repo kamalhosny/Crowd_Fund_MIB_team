@@ -48,6 +48,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'faker'
   gem 'sqlite3'
+  gem 'rubocop'
 end
 
 group :development do

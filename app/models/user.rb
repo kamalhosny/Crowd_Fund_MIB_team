@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
   include DeviseTokenAuth::Concerns::User
-
-  validates :username,presence: true
-
+  
+  validates :username, presence: true
 end

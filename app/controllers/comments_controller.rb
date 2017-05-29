@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_action :authenticate_member!, only: [:index]
   def index
     comments = current_user.comments
     respond_to do |format|

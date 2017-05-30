@@ -19,8 +19,8 @@ class CommentsController < ApplicationController
   end
 
   def update
-    if current_user.campaigns.include? campaign | current_admin
-      comment = Comment.find params[:id]
+    comment = Comment.find params[:id]
+    if current_user.comments.include? comment || current_admin
       respond_to do |format|
         if (current_user.comments.include? comment || current_admin) && (comment.update! comment_params)
             format.json {render :json =>comment}

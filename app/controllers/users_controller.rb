@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-
   skip_before_action :authenticate_member!, only: [:show]
+
   def show
     user = User.find(params[:id])
     respond_to do |format|
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user=User.find params[:id]
+    user = User.find params[:id]
     respond_to do |format|
       if user.delete
         format.json {render json: {message: "user: '#{params[:id]}' deleted"}, status: 200}

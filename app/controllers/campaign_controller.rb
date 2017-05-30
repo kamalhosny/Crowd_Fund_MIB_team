@@ -34,9 +34,9 @@ class CampaignController < ApplicationController
   end
 
   def show
-    campaign = Campaign.find(params[:id])
+    @campaign = Campaign.find(params[:id])
     respond_to do |format|
-      format.json  { render :json => campaign }
+      format.json  { render :json => @campaign.to_json(:methods => [:cover_photo_url, :description_photo_url, :profile_photo_url]) }
     end
   end
 

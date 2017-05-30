@@ -8,4 +8,13 @@ class Campaign < ApplicationRecord
   validates_attachment_content_type :profile_photo, content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :description_photo, content_type: /\Aimage\/.*\z/
+  def cover_photo_url
+    cover_photo.url(:medium)
+  end
+  def profile_photo_url
+    profile_photo.url(:medium)
+  end
+  def description_photo_url
+    description_photo.url(:medium)
+  end
 end

@@ -9,11 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 20170521083945) do
-=======
-ActiveRecord::Schema.define(version: 20170529083941) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
@@ -35,12 +31,12 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
->>>>>>> Stashed changes
+
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "title",                                          null: false
     t.text     "description",                                    null: false
-    t.integer  "achieved"
+    t.integer  "achieved",                       default: 0
     t.integer  "goal",                                           null: false
     t.string   "video"
     t.boolean  "status",                         default: false
@@ -62,8 +58,7 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
-<<<<<<< Updated upstream
-=======
+
   create_table "comments", force: :cascade do |t|
     t.text     "content",     default: "", null: false
     t.integer  "user_id"
@@ -71,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["campaign_id"], name: "index_comments_on_campaign_id"
+
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -112,5 +108,4 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
->>>>>>> Stashed changes
 end

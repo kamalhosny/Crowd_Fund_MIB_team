@@ -18,6 +18,8 @@ gem 'puma', '~> 3.0'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Use paperclip to upload images
+# gem 'paperclip', '~> 4.3', '>= 4.3.6'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -31,12 +33,25 @@ gem "paperclip", "~> 5.0.0"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+# Use Devise Token Auth for authentication and its dependencies
+gem 'devise_token_auth', '~> 0.1.42'
+gem 'devise', '~> 4.3'
+gem 'omniauth', '~> 1.6'
+# gem 'omniauth-github'
+# gem 'omniauth-facebook'
+# gem 'omniauth-google-oauth2'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails','~> 3.4'
   gem 'factory_girl_rails','~> 4.0'
+  gem 'rails-controller-testing'
   gem 'faker'
+  gem 'rubocop'
+
+
 end
 
 group :development do
@@ -45,6 +60,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+group :production do
+  gem 'pg', '~> 0.18.4'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Use Devise Token Auth for authentication and its dependencies
+gem 'devise_token_auth', '~> 0.1.42'

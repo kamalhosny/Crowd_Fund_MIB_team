@@ -3,7 +3,7 @@ FactoryGirl.define do
     title Faker::Lorem.sentence
     description Faker::Lorem.paragraph
     goal 2500
-    status false
+    user_id 1
   end
 
   factory :invalid_campaign, class: Campaign do

@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable,
-  :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable
+
 
   has_many :comments
   has_many :campaigns
@@ -14,6 +15,5 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
   include DeviseTokenAuth::Concerns::User
-  
   validates :username, presence: true
 end

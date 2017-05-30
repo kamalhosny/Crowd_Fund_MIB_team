@@ -19,12 +19,14 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment = Comment.find params[:id]
-    respond_to do |format|
-      if comment.update comment_params
-          format.json {render :json =>comment}
-      else
-        format.json {render json: comment.errors.full_messages, status: 400}
+    if current_user.campaigns.include? campaign | current_admin
+      comment = Comment.find params[:id]
+      respond_to do |format|
+        if (current_user.comments.include? comment || current_admin) && (comment.update! comment_params)
+            format.json {render :json =>comment}
+        else
+          format.json {render json: comment.errors.full_messages, status: 400}
+        end
       end
     end
   end
@@ -32,7 +34,7 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find params[:id]
     respond_to do |format|
-      if comment.delete
+      if (current_user.comments.include? comment || current_admin) && (comment.delete)
         format.json {render json: {message: "comment: '#{params[:id]}' deleted"}, status: 200}
       else
         format.json {render json: comment.errors.full_messages, status: 400}

@@ -1,46 +1,50 @@
 class CommentsController < ApplicationController
+  skip_before_action :authenticate_member!, only: [:index]
   def index
-    comments= Comment.all
+    comments = Comment.where campaign_id: params[:campaign_id]
     respond_to do |format|
-      format.json {render :json =>comments}
+      format.json {render json: comments}
     end
   end
 
   def create
-    comment=Comment.new comment_params
+    comment = current_user.comments.create comment_params.merge({username: current_user.username})
     respond_to do |format|
-      if comment.save!
+      if comment.errors.empty?
           format.json {render :json =>comment}
       else
-        format.json {render comment.errors.full_messages.to_json, status: 400 }
+        format.json {render json: comment.errors.full_messages, status: 400 }
       end
     end
   end
 
   def update
-    comment=Comment.find params[:id]
-    respond_to do |format|
-      if comment.update! comment_params
-          format.json {render :json =>comment}
-      else
-        format.json {render comment.errors.full_messages.to_json, status: 400}  }
+    comment = Comment.find params[:id]
+    if current_user.comments.include? comment || current_admin
+      respond_to do |format|
+        if (current_user.comments.include? comment || current_admin) && (comment.update! comment_params)
+            format.json {render :json =>comment}
+        else
+          format.json {render json: comment.errors.full_messages, status: 400}
+        end
       end
+    end
   end
 
   def destroy
-    comment=Comment.find params[:id]
+    comment = Comment.find params[:id]
     respond_to do |format|
-      if comment.delete!
+      if (current_user.comments.include? comment || current_admin) && (comment.delete)
         format.json {render json: {message: "comment: '#{params[:id]}' deleted"}, status: 200}
       else
-        format.json {render comment.errors.full_messages.to_json, status: 400}
+        format.json {render json: comment.errors.full_messages, status: 400}
       end
     end
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:content,:user_id)
+    params.require(:comment).permit(:content,:campaign_id)
   end
 
 end

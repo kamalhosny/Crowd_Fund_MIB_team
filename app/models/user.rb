@@ -17,4 +17,6 @@ class User < ActiveRecord::Base
 
   validates :username,presence: true
 
+  include DeviseTokenAuth::Concerns::User
+  validates :username, presence: true
 end

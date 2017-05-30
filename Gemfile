@@ -24,6 +24,12 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Using nokogiri
+gem 'nokogiri', '~> 1.7'
+
+# Using paperclip for attaching photos
+gem "paperclip", "~> 5.0.0"
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
@@ -41,7 +47,11 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails','~> 3.4'
   gem 'factory_girl_rails','~> 4.0'
+  gem 'rails-controller-testing'
   gem 'faker'
+  gem 'rubocop'
+
+
 end
 
 group :development do
@@ -50,6 +60,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+group :production do
+  gem 'pg', '~> 0.18.4'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Use Devise Token Auth for authentication and its dependencies
+gem 'devise_token_auth', '~> 0.1.42'

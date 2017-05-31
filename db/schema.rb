@@ -9,8 +9,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
+ActiveRecord::Schema.define(version: 20170521083945) do
 
-ActiveRecord::Schema.define(version: 20170529083941) do
   create_table "admins", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                    default: "",      null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
+
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "title",                                          null: false
@@ -57,12 +58,15 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
+
   create_table "comments", force: :cascade do |t|
     t.text     "content",     default: "", null: false
-    t.string   "username"
     t.integer  "user_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "campaign_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["campaign_id"], name: "index_comments_on_campaign_id"
+
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -83,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170529083941) do
     t.integer  "age",                                            null: false
     t.boolean  "gender",                       default: true,    null: false
     t.text     "bio"
+    t.string   "profile_picture"
     t.string   "facebook"
     t.string   "github"
     t.string   "linked_in"

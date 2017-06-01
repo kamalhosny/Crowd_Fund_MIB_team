@@ -13,8 +13,10 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     respond_to do |format|
-      if user.update! user_params
-        format.json { render json: user }
+
+      if (current_user == user || current_admin) && (user.update! user_params)
+        format.json {render json: user}
+
       else
         format.json { render user.errors.full_messages.to_json, status: 400 }
       end
@@ -24,8 +26,8 @@ class UsersController < ApplicationController
   def destroy
     user = User.find params[:id]
     respond_to do |format|
-      if user.delete
-        format.json { render json: { message: "user: '#{params[:id]}' deleted" }, status: 200 }
+      if (current_user == user || current_admin) && (user.delete)
+        format.json {render json: {message: "user: '#{params[:id]}' deleted"}, status: 200}
       else
         format.json { render user.errors.full_messages.to_json, status: 400 }
       end

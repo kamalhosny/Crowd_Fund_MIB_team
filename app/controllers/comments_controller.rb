@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   skip_before_action :authenticate_member!, only: [:index]
   def index
     comments = Comment.where campaign_id: params[:campaign_id]
     respond_to do |format|
-      format.json {render json: comments}
+      format.json { render json: comments }
     end
   end
 
   def create
-    comment = current_user.comments.create comment_params.merge({username: current_user.username})
+    comment = current_user.comments.create comment_params.merge(username: current_user.username)
     respond_to do |format|
       if comment.errors.empty?
-          format.json {render :json =>comment}
+        format.json { render json: comment }
       else
-        format.json {render json: comment.errors.full_messages, status: 400 }
+        format.json { render json: comment.errors.full_messages, status: 400 }
       end
     end
   end
@@ -23,9 +25,9 @@ class CommentsController < ApplicationController
     if current_user.comments.include? comment || current_admin
       respond_to do |format|
         if (current_user.comments.include? comment || current_admin) && (comment.update! comment_params)
-            format.json {render :json =>comment}
+          format.json { render json: comment }
         else
-          format.json {render json: comment.errors.full_messages, status: 400}
+          format.json { render json: comment.errors.full_messages, status: 400 }
         end
       end
     end
@@ -34,17 +36,17 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find params[:id]
     respond_to do |format|
-      if (current_user.comments.include? comment || current_admin) && (comment.delete)
-        format.json {render json: {message: "comment: '#{params[:id]}' deleted"}, status: 200}
+      if (current_user.comments.include? comment || current_admin) && comment.delete
+        format.json { render json: { message: "comment: '#{params[:id]}' deleted" }, status: 200 }
       else
-        format.json {render json: comment.errors.full_messages, status: 400}
+        format.json { render json: comment.errors.full_messages, status: 400 }
       end
     end
   end
 
   private
-  def comment_params
-    params.require(:comment).permit(:content,:campaign_id)
-  end
 
+  def comment_params
+    params.require(:comment).permit(:content, :campaign_id)
+  end
 end

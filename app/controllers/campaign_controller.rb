@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class CampaignController < ApplicationController
-  skip_before_action :authenticate_member!, only: [:index, :show]
+  skip_before_action :authenticate_member!, only: %i[index show]
   def index
     campaigns = Campaign.all
     respond_to do |format|
@@ -20,9 +22,7 @@ class CampaignController < ApplicationController
 
   def destroy
     campaign = Campaign.find(params[:id])
-    if current_user.campaigns.include? campaign || current_admin
-      campaign.delete
-    end
+    campaign.delete if current_user.campaigns.include? campaign || current_admin
   end
 
   def update

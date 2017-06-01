@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   # include DeviseTokenAuth::Concerns::SetAdminByToken
@@ -5,7 +7,7 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
   respond_to :json
 
-  devise_token_auth_group :member, contains: [:user, :admin]
+  devise_token_auth_group :member, contains: %i[user admin]
   before_action :authenticate_member!, unless: :devise_controller?
 
   protected

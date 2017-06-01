@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
 
   include DeviseTokenAuth::Concerns::User
   validates :username, presence: true
+  
+  def profile_picture_url
+    profile_picture.url(:medium)
+  end
 end

@@ -21,12 +21,9 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find params[:id]
+    user.delete
     respond_to do |format|
-      if user.delete
         format.json {render json: {message: "user: '#{params[:id]}' deleted"}, status: 200}
-      else
-        format.json {render user.errors.full_messages.to_json, status: 400}
-      end
     end
   end
 

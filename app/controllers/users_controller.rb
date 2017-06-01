@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  skip_before_action :authenticate_member!, only: [:show]
+  skip_before_action :authenticate_member!, only: [:show, :update]
 
   def show
     user = User.find(params[:id])

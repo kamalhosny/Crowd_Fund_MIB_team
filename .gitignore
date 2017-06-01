@@ -26,3 +26,5 @@ config/database.yml
 #ruby version and gemset
 .ruby-version
 .ruby-gemset
+
+public/system

@@ -13,10 +13,8 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     respond_to do |format|
-
       if (current_user == user || current_admin) && (user.update! user_params)
         format.json {render json: user}
-
       else
         format.json { render user.errors.full_messages.to_json, status: 400 }
       end

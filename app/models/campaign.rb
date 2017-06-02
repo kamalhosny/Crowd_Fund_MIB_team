@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
-  has_attached_file :profile_photo, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: 'assets/images/:style/missing.png'
-  has_attached_file :cover_photo, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: 'assets/images/:style/missing.png'
-  has_attached_file :description_photo, styles: { medium: '300x300>', thumb: '100x100>' }, default_url: 'assets/images/:style/missing.png'
+  has_attached_file :profile_photo, styles: { medium: '1000x1000>', thumb: '100x100>' }, default_url: 'assets/images/:style/missing.png'
+  has_attached_file :cover_photo, styles: { medium: '1000x1000>', thumb: '100x100>' }, default_url: 'assets/images/:style/missing.png'
+  has_attached_file :description_photo, styles: { medium: '1000x1000>', thumb: '100x100>' }, default_url: 'assets/images/:style/missing.png'
   validates :title, :description, :goal, presence: true
   belongs_to :user
   has_many :comments

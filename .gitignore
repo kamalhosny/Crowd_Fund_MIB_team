@@ -27,4 +27,5 @@ config/database.yml
 .ruby-version
 .ruby-gemset
 
+#papercip uploaded images
 public/system

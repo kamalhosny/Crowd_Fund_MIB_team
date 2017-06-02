@@ -5,7 +5,7 @@ class CampaignController < ApplicationController
   def index
     campaigns = Campaign.all
     respond_to do |format|
-      format.json { render json: campaigns }
+      format.json { render json: campaigns.to_json(:methods => [:cover_photo_url, :description_photo_url, :profile_photo_url]) }
     end
   end
 
